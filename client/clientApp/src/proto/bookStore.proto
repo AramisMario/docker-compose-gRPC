@@ -1,0 +1,31 @@
+syntax = 'proto3';
+
+package bookStorePackage;
+
+service Book {
+    rpc createBook (BookItem) returns (BookItem);
+    rpc readBook (BookRequest) returns (BookResponse);
+    rpc readBooks (empty) returns (BookList);
+    rpc sendToclient(stream BookItem) returns (stream BookItem);
+}
+
+message BookItem {
+    int32 id = 1;
+    optional string book = 2;
+}
+
+message BookRequest {
+    int32 id = 1;
+}
+
+message BookResponse{
+    int32 id = 1;
+    optional string book = 2;
+}
+
+message BookList{
+    repeated BookItem books = 1;
+}
+
+
+message empty {}
